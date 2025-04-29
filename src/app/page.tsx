@@ -1,103 +1,133 @@
-import Image from "next/image";
+"use client"
 
-export default function Home() {
+import { useState, useEffect } from "react";
+import Contacts from "@/components/Contacts";
+import { Button } from "@/components/Control";
+
+import { GoPaperclip } from "react-icons/go";
+import { IoSearchSharp } from "react-icons/io5";
+import { VscSmiley } from "react-icons/vsc";
+import { FaPlus } from "react-icons/fa6";
+import { HiPaperAirplane } from "react-icons/hi";
+import { LeftMessage, RightMessage } from "@/components/Message";
+
+export default function Chat() {
+  const [contacts, setContacts] = useState([
+    {
+      name: "Assistente Virtual 1",
+      description: "FURIA",
+      img_url: "/images/foto_perfil.png",
+      messages: [
+        {
+          text: "Bem-vindo! Qual é a sua dúvida técnica? (1-2):<br />1. top 1<br />2. top 2",
+          sender: "left",
+        },
+      ],
+    },
+  ]);
+
+  const [activeChat, setActiveChat] = useState(0);
+  const [inputMessage, setInputMessage] = useState("");
+
+  const topics = [
+    "topico 1",
+    "topico 2"
+  ];
+
+
+  const sendMessage = () => {
+    if (!inputMessage.trim()) return;
+
+    const newContacts = [...contacts];
+    const userMessage = { text: inputMessage, sender: "right" };
+    newContacts[activeChat].messages.push(userMessage);
+
+    const userChoice = parseInt(inputMessage, 10);
+
+    if (userChoice >= 1 && userChoice <= 6) {
+      const supportResponse = {
+        text: `Você escolheu a opção ${userChoice}:<br />${topics[userChoice - 1]}<br />Gostaria de saber mais sobre outro tópico? (1-2)`,
+        sender: "left",
+      };
+      newContacts[activeChat].messages.push(supportResponse);
+    } else {
+      const errorMessage = {
+        text: "Por favor, escolha um número válido entre 1 e 2.",
+        sender: "left",
+      };
+      newContacts[activeChat].messages.push(errorMessage);
+    }
+
+    setContacts(newContacts);
+    setInputMessage("");
+  };
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <>
+      <div className="bg-gradient-fundo">
+        <div className="max-h-screen px-20 grid place-items-center bg-no-repeat bg-[url('/images/linhas-bg.png')] py-10">
+          <div className="grid grid-cols-[25rem_auto] grid-rows-[calc(100vh-7rem)] gap-8 py-4">
+            <div className="flex flex-col self-start items-center justify-start gap-8 h-full">
+            <div className="w-full h-12 bg-white rounded-[50vh] flex items-center justify-start overflow-hidden p-[1px]">
+              <IoSearchSharp className="text-2xl ml-5 text-[#494949] cursor-pointer" />
+              <input
+                className="w-full h-12 pl-4 bg-none border-none text-[#494949] outline-none font-semibold text-[1.1rem]"
+                type="text"
+                placeholder="Pesquisar contatos..."
+                />
+            </div>
+              <div className="w-full h-[calc(100vh-2rem)] flex bg-white rounded-[22px] flex-col shadow-[0_0_10px_rgba(0,0,0,0.4)] pb-1 overflow-y-auto">
+              <Contacts
+                      name={"primeiro nome"}
+                      description={"descrição"}
+                      img_url={"/images/foto_perfil.png"}
+                    />
+              </div>
+            </div>
+            <div className="w-[60vw] max-h-screen flex flex-col gap-6">
+              <div className="flex items-center justify-end flex-row gap-[1rem]">
+                <Button name={"Nova Conversa"}>
+                  <FaPlus className="font-[2rem]" />
+                </Button>
+              </div>
+              <div className="grid grid-rows-[auto_5rem] w-full h-full bg-white rounded-[22px] overflow-hidden shadow-[0_0_10px_rgba(0,0,0,0.4)]">
+                <div className="flex flex-col bg-white p-6 gap-4 overflow-y-scroll">
+                  {contacts[activeChat]?.messages.map((msg, i) =>
+                    msg.sender === "left" ? (
+                      <LeftMessage key={i} dangerouslySetInnerHTML={{ __html: msg.text }}>{msg.text}</LeftMessage>
+                    ) : (
+                      <RightMessage key={i} dangerouslySetInnerHTML={{ __html: msg.text }}>{msg.text}</RightMessage>
+                    )
+                  )}
+                </div>
+                <div className="grid grid-cols-[auto_3rem] p-4 gap-4 h-fit">
+                  <div className="grid grid-cols-[2rem_auto_2rem] items-center text-[#494949] px-4 w-full h-12 rounded-[50vh] bg-[#E6E9ED] gap-4">
+                    <VscSmiley className="text-[1.5rem] cursor-pointer" />
+                    <input
+                      className="h-full bg-transparent border-none text-[#494949] text-[1.2rem] outline-none"
+                      type="text"
+                      value={inputMessage}
+                      onChange={(e) => setInputMessage(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                          sendMessage(); 
+                        }
+                      }}
+                    />
+                    <GoPaperclip className="text-[1.5rem] cursor-pointer" />
+                  </div>
+                  <button
+                    onClick={sendMessage}
+                    className="w-12 h-12 rounded-[50vh] border-none text-[1.2rem] rotate-[45deg] bg-azultech text-white cursor-pointer flex justify-center  items-center"
+                  >
+                    <HiPaperAirplane />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </div>
+    </>
   );
 }
