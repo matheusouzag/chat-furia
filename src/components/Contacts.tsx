@@ -1,19 +1,17 @@
 import Image from "next/image";
 
 interface ContactProps {
-    name: string;
-    description: string;
-    img_url: string;
-  }
+  name: string;
+  description: string;
+  img_url: string;
+}
 
-export default function Contacts({name, description, img_url,
-} : ContactProps){
+export default function Contacts({ name, description, img_url }: ContactProps) {
   return (
-    <div
-      className="flex items-center justify-between py-2 px-4 cursor-pointer border-b-2 border-gray hover:bg-[#E6E9ED] relative">
+    <div className="flex items-center justify-between py-2 px-4 cursor-pointer border-b-2 border-gray hover:bg-[#E6E9ED] relative">
       <div className="flex items-center">
         <Image
-          className="rounded-full"
+          className="rounded-full max-w-20 max-h-20 object-cover"
           src={img_url}
           alt="user image"
           width={80}
