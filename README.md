@@ -10,7 +10,7 @@
 2. **Tecnologias Utilizadas**:
    - **Next.js**: Framework React para desenvolvimento escalável.
    - **TypeScript**: Para código mais seguro e gerenciável.
-   - **Tailwind CSS** e **shadcn/ui**: Para estilização moderna e componentes reutilizáveis.
+   - **Tailwind CSS**: Para estilização moderna e componentes reutilizáveis.
    - **LLaMA3**: o Ollama LLaMA 3 é um modelo de linguagem.
 ---
 
