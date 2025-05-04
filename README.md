@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# WebChat FURIA
 
-## Getting Started
+## 🚀 Funcionalidades Implementadas
 
-First, run the development server:
+1. **Interface de Chat**:
+   - Permite interagir com o Grupo Furioso (com funcionalidade de loop de conversas).
+   - Criar conversa entre o usuário e um assistente virtual, caracterizado pelos jogadores da FURIA. (Botão "+ Converse com os jogadores") 
+   - Respostas do assistente customizadas com base no jogador, utilizando o LLM LLaMA3 localmente.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+2. **Tecnologias Utilizadas**:
+   - **Next.js**: Framework React para desenvolvimento escalável.
+   - **TypeScript**: Para código mais seguro e gerenciável.
+   - **Tailwind CSS** e **shadcn/ui**: Para estilização moderna e componentes reutilizáveis.
+   - **LLaMA3**: o Ollama LLaMA 3 é um modelo de linguagem.
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ Instalação e Execução
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Pré-requisitos
+Ter instalado:
+- **Node.js**
+- **npm** ou **yarn**
+- **Ollama**
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Passos para Configuração
+1. **Clone o repositório**:
+   ```bash
+   git clone https://github.com/matheusouzag/chat-furia.git
 
-## Learn More
+2. **Instale as dependências:**:
+   ```bash
+   npm install
 
-To learn more about Next.js, take a look at the following resources:
+3. **Instalação do Ollama**:
+   Acessando o link: https://ollama.com/download
+   Após isso basta abrir o terminal e executar o seguinte comando (o modelo possui 5GB):
+   ```bash
+   ollama pull llama3
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. **Inicie o localhost (Abra http://localhost:3000 no navegador)**:
+   ```bash
+   npm run dev
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🧱 Arquitetura do Projeto
 
-## Deploy on Vercel
+O projeto foi estruturado garantindo escalabilidade e organização, seguindo a seguinte estrutura:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. **public/images**: Para organização de imagens
+2. **src/app**: Contendo a estrutura principal do chat
+3. **src/components**: Com os seguintes Componentes utilizados:
+   - Contacts: Para os Contatos
+   - Control: Para botões utilizados
+   - Header/Footer: Para complementar o chat
+   - Message: Para os balões de texto
+4. **src/pages/api/chat.ts**: Local que esta configurado nosso modelo.
