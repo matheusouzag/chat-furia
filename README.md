@@ -32,7 +32,7 @@ Ter instalado:
    npm install
 
 3. **Instalação do Ollama**:
-   Acessando o link: https://ollama.com/download
+   Acessando o link: https://ollama.com/download.
    Após isso basta abrir o terminal e executar o seguinte comando (o modelo possui 5GB):
    ```bash
    ollama pull llama3
