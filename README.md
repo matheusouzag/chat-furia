@@ -40,6 +40,8 @@ Ter instalado:
 4. **Inicie o localhost (Abra http://localhost:3000 no navegador)**:
    ```bash
    npm run dev
+   
+5. **Dísponivel também no Vercel: https://chat-furia-seven.vercel.app/ (Mas sem o uso do modelo)**:
 
 ## 🧱 Arquitetura do Projeto
 
