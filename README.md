@@ -27,7 +27,7 @@ Ter instalado:
    ```bash
    git clone https://github.com/matheusouzag/chat-furia.git
 
-2. **Acesse a pasta utilizando o comando:**:
+2. **Acesse a pasta utilizando o comando:**
    ```bash
    cd chat-furia
 
