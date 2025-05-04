@@ -41,7 +41,7 @@ Ter instalado:
    ```bash
    npm run dev
    
-5. **Dísponivel também no Vercel: https://chat-furia-seven.vercel.app/ (Mas sem o uso do modelo)**:
+5. **Dísponivel também no Vercel: https://chat-furia-seven.vercel.app/ (Mas sem o uso do modelo)**.
 
 ## 🧱 Arquitetura do Projeto
 
