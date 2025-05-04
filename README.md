@@ -27,21 +27,25 @@ Ter instalado:
    ```bash
    git clone https://github.com/matheusouzag/chat-furia.git
 
-2. **Instale as dependências:**:
+2. **Acesse a pasta utilizando o comando:**:
+   ```bash
+   cd chat-furia
+
+3. **Instale as dependências:**:
    ```bash
    npm install
 
-3. **Instalação do Ollama**:
+4. **Instalação do Ollama**:
    Acessando o link: https://ollama.com/download.
    Após isso basta abrir o terminal e executar o seguinte comando (o modelo possui 5GB):
    ```bash
    ollama pull llama3
 
-4. **Inicie o localhost (Abra http://localhost:3000 no navegador)**:
+5. **Inicie o localhost (Abra http://localhost:3000 no navegador)**:
    ```bash
    npm run dev
    
-5. **Dísponivel também no Vercel: https://chat-furia-seven.vercel.app/ (Mas sem o uso do modelo)**.
+6*. **Dísponivel também no Vercel: https://chat-furia-seven.vercel.app/ (Mas sem o uso do modelo)**.
 
 ## 🧱 Arquitetura do Projeto
 
